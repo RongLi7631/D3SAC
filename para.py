@@ -1,0 +1,28 @@
+import math
+
+LEARN_FREQ = 1
+SAC_LEARN_FREQ = 1
+MEMORY_SIZE = 100000
+SAC_MEMORY_SIZE = 100000
+MEMORY_WARMUP_SIZE = 1000
+SAC_MEMORY_WARMUP_SIZE = 1000
+BATCH_SIZE = 64
+SAC_BATCH_SIZE = 64
+LEARNING_RATE = 1e-4
+ACTOR_LR = 1e-4
+CRITIC_LR = 1e-4
+DQN_GAMMA = 0.9
+SAC_GAMMA = 0.99
+TAU = 0.005
+N = 3
+M = 20
+w_t = 0.9
+w_e = 1 - w_t
+F_BS = [6e9, 8e9, 10e9]
+F_MD = 1e9
+steps = 120
+zeta = 1
+A_max = 2
+max_episode = 300
+alpha = math.pi / 6
+SEED = [1, 2, 3]
