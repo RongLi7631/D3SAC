@@ -47,7 +47,7 @@ class EdgeEnv:
             if bs_list[b - 1].res_F < f1:
                 reward = -1
             else:
-                p_max = 0.5
+                p_max = 1
                 T2, E2 = bs_list[b - 1].computing(md_list[m].B, md_list[m].C, f1)
                 if b == md_list[m].connect_BS + 1:
                     p, g = self.get_p(md_list[m], T2, 0)
@@ -119,7 +119,7 @@ class EdgeEnv:
             if bs_list[b - 1].res_F < f1:
                 reward = -1
             else:
-                p_max = 0.5
+                p_max = 1
                 T2, E2 = bs_list[b - 1].computing(md_list[m].B, md_list[m].C, f1)
                 if b == md_list[m].connect_BS + 1:
                     p, g = self.get_p(md_list[m], T2, 0)
@@ -201,7 +201,7 @@ class EdgeEnv:
         Gamma = md.Gamma
         g = md.gain()
         k = g / 3.981e-18
-        P_max = 0.5
+        P_max = 1
         if Gamma - T2 - T3 > 0:
             Gamma_bar = max(Gamma - T2 - T3, 1e-3)
             P_min = min((2 ** (B / (1e7 * Gamma_bar)) - 1) / k, 0.5)
