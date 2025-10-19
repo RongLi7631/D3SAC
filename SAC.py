@@ -51,26 +51,21 @@ class CriticModel(nn.Module):
 
         hid_size = 128
 
-        # Define the Q1 network (for value estimation)
-        self.fc1 = nn.Linear(in_features=obs_dim + act_dim, out_features=hid_size)  # obs + act
+        self.fc1 = nn.Linear(in_features=obs_dim + act_dim, out_features=hid_size)  
         self.fc2 = nn.Linear(in_features=hid_size, out_features=hid_size)
         self.fc3 = nn.Linear(in_features=hid_size, out_features=1)
 
-        # Define the Q2 network (for value estimation)
-        self.fc4 = nn.Linear(in_features=obs_dim + act_dim, out_features=hid_size)  # obs + act
+        self.fc4 = nn.Linear(in_features=obs_dim + act_dim, out_features=hid_size)  
         self.fc5 = nn.Linear(in_features=hid_size, out_features=hid_size)
         self.fc6 = nn.Linear(in_features=hid_size, out_features=1)
 
     def value(self, obs, act):
-        # Concatenate observation and action
         concat = torch.cat((obs, act), dim=1)
 
-        # Compute Q1
         hid1 = F.relu(self.fc1(concat))
         hid2 = F.relu(self.fc2(hid1))
         Q1 = self.fc3(hid2)
 
-        # Compute Q2
         hid3 = F.relu(self.fc4(concat))
         hid4 = F.relu(self.fc5(hid3))
         Q2 = self.fc6(hid4)
@@ -115,13 +110,11 @@ class SAC(nn.Module):
         self.log_alpha = torch.tensor(math.log(0.01))
         self.log_alpha.requires_grad = True
         self.target_entropy = -1
-        # 主网络和目标网络
         self.actor_model = actor_model.to(device)
         self.model = model
         self.target_model = copy.deepcopy(self.model)
         self.model.to(device)
         self.target_model.to(device)
-        # 优化器
         self.actor_optimizer = optim.Adam(self.actor_model.parameters(), lr=self.actor_lr)
         self.critic_optimizer = optim.Adam(self.model.get_critic_params(), lr=self.critic_lr)
         self.alpha_optimizer = optim.Adam([self.log_alpha], lr=self.actor_lr)
@@ -189,7 +182,6 @@ class SAC(nn.Module):
     def sync_target(self, decay=None):
         if decay is None:
             decay = 1. - self.tau
-        # 更新目标网络的权重
         for target_param, param in zip(self.target_model.parameters(), self.model.parameters()):
             target_param.data.copy_(decay * target_param.data + (1.0 - decay) * param.data)
 
