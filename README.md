@@ -21,7 +21,7 @@ The repository is organized as follows:
 - PyTorch 1.10.1 
 - NumPy 1.19.2
 - gym 0.19.0
-- scipy==1.5.2
+- scipy 1.5.2
 
 ## Usage
 
