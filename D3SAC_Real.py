@@ -25,7 +25,6 @@ CRITIC_LR = para.CRITIC_LR
 DQN_GAMMA = para.DQN_GAMMA
 SAC_GAMMA = para.SAC_GAMMA
 TAU = para.TAU
-NOISE = para.NOISE
 N = para.N
 M = para.M
 w_t = para.w_t
